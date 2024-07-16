@@ -4,15 +4,21 @@ import { Button, Image, Text, View, StyleSheet } from "react-native";
 import { Game } from "../api/games";
 
 import { FavoriteButton } from "./FavoriteButton";
+import { useNavigation } from "@react-navigation/native";
 
 const HEIGHT = 100;
 
 interface GameCardProps {
   game: Game;
-  onPress: () => void;
 }
 
-const GameCard = ({ game, onPress }: GameCardProps) => {
+const GameCard = ({ game }: GameCardProps) => {
+  const navigation = useNavigation();
+
+  const goToDetails = () => {
+    navigation.navigate("Details", { game });
+  };
+
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -29,11 +35,11 @@ const GameCard = ({ game, onPress }: GameCardProps) => {
           </View>
         </View>
         <View>
-          <FavoriteButton gameId={game.id} />
+          <FavoriteButton game={game} />
         </View>
       </View>
       <View>
-        <Button color="blue" onPress={onPress} title="Details" />
+        <Button color="blue" onPress={goToDetails} title="Details" />
       </View>
     </View>
   );

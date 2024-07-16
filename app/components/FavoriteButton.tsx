@@ -8,25 +8,21 @@ import useFavoritesStore from "../store";
 import { Game } from "../api/games";
 
 interface FavoriteButtonProps {
-  gameId: number;
+  game: Game;
 }
 
-const FavoriteButton = ({ gameId }: FavoriteButtonProps) => {
-  const { games, add, remove } = useFavoritesStore((state) => state);
+const FavoriteButton = ({ game }: FavoriteButtonProps) => {
+  const { add, remove, games } = useFavoritesStore((state) => state);
 
-  console.log("games", games);
-
-  const isFavorite = games.find((game: Game) => game.id === gameId);
-
-  console.log("isFavorite", isFavorite);
+  const isFavorite = games.some(({ id }: Game) => game.id === id);
 
   const icon = isFavorite ? "heart" : "hearto";
 
   const onPress = () => {
     if (isFavorite) {
-      remove(gameId);
+      remove(game);
     } else {
-      add(gameId);
+      add(game);
     }
   };
 
