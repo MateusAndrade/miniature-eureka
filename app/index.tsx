@@ -1,7 +1,12 @@
-import { Text, View } from "react-native";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Router from "./screens/Tabs";
 
+const queryClient = new QueryClient();
+
 export default function Index() {
-  return <Router />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router />
+    </QueryClientProvider>
+  );
 }

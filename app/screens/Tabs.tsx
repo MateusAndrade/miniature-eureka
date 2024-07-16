@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
 import Games from "./Games";
